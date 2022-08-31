@@ -15,6 +15,7 @@ use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 
+
 class RegisterFormType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
@@ -26,26 +27,28 @@ class RegisterFormType extends AbstractType
                     new NotBlank([
                         'message' => 'Ce champ ne peut être vide'
                     ]),
-                    new Length([
-                        'min' => 4,
-                        'max' => 255,
-                        'minMessage' => 'Votre email doit comporter au minimum {{ limit }} caractères',
-                        'maxMessage' => 'Votre email doit comporter au maximum {{ limit }} caractères',
+                    new length([
+                            'min' => 4,
+                            'max' => 255,
+                            'minMessage' => 'Votre email dois comporter {{ value }} au minimum {{ limit }} caractères',
+                            'maxMessage' => 'Votre email dois comporter au maximum {{ limit }} caractères',
                     ]),
                     new Email([
-                        'message' => "Votre email n'est pas au bon format ex: mail@exemple.com"
+                        'message' => 'l\'email n\'est pas au bon format, ex mail@exemple.com'
                     ])
                 ],
+
             ])
+            // ->add('roles') rien n'a faire dans un formulaire
             ->add('password', PasswordType::class, [
-                'label' => 'Mot de passe',
+                'label' => 'Mots de passe',
                 'constraints' => [
                     new NotBlank([
                         'message' => 'Ce champ ne peut être vide'
                     ]),
                 ],
             ])
-            ->add('firstname', TextType::class,[
+            ->add('firstname', TextType::class, [
                 'label' => 'Prénom',
                 'constraints' => [
                     new NotBlank([
@@ -53,7 +56,7 @@ class RegisterFormType extends AbstractType
                     ]),
                 ],
             ])
-            ->add('lastname', TextType::class,[
+            ->add('lastname', TextType::class, [
                 'label' => 'Nom',
                 'constraints' => [
                     new NotBlank([
@@ -61,28 +64,31 @@ class RegisterFormType extends AbstractType
                     ]),
                 ],
             ])
-            ->add('gender', ChoiceType::class ,[
+            ->add('gender', ChoiceType::class, [
                 'label' => 'Civilité',
+                'constraints' => [
+                    new NotBlank([
+                        'message' => 'Ce champ ne peut être vide'
+                    ]),
+                ],
                 'expanded' => true,
                 'choices' => [
-                    'Homme'=> 'homme',
-                    'Femme'=> 'femme',
-                    'Non binaire'=> 'non binaire',
-                ],
-                    'constraints' => [
-                        new NotBlank([
-                            'message' => 'Ce champ ne peut être vide'
-                        ]),
-                    
+                    'Homme' => 'homme',
+                    'Femme' => 'femme'
                 ],
             ])
-            ->add('submit', SubmitType::class,[              
-                'label' => 'Valider',
+            ->add('submit', SubmitType::class, [
+                'label' => 'valider',
                 'validate' => false,
                 'attr' => [
-                    'class' => 'd-block mx-auto btn btn-primary col-3'
-                ]
+                    'class' => 'd-block mx-auto btn btn-warning col-4'
+                    ]
+
             ])
+            // ne doivent jamais apparaitre dans le formulaire
+            // ->add('createdAt')
+            // ->add('updatedAt')
+            // ->add('deletedAt')
         ;
     }
 

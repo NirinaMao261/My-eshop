@@ -9,7 +9,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class DefaultController extends AbstractController
 {
     #[Route('/', name: 'default_home', methods: ['GET'])]
-    public function home(): Response 
+    public function home(): Response
     {
         return $this->render('default/home.html.twig');
     }

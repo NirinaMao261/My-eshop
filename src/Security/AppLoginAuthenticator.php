@@ -46,7 +46,7 @@ class AppLoginAuthenticator extends AbstractLoginFormAuthenticator
             return new RedirectResponse($targetPath);
         }
 
-        // For example:
+        // la redirection apres la connexion
         return new RedirectResponse($this->urlGenerator->generate('default_home'));
         // throw new \Exception('TODO: provide a valid redirect inside '.__FILE__);
     }

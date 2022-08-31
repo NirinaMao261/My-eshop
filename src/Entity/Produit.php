@@ -20,13 +20,13 @@ class Produit
     #[ORM\Column(type: Types::TEXT)]
     private ?string $description = null;
 
-    #[ORM\Column(length: 50)]
+    #[ORM\Column(length: 100)]
     private ?string $color = null;
 
-    #[ORM\Column(length: 5)]
+    #[ORM\Column(length: 10)]
     private ?string $size = null;
 
-    #[ORM\Column(length: 10)]
+    #[ORM\Column(length: 20)]
     private ?string $gender = null;
 
     #[ORM\Column(length: 255)]
@@ -35,7 +35,7 @@ class Produit
     #[ORM\Column(length: 10)]
     private ?string $price = null;
 
-    #[ORM\Column(length: 5)]
+    #[ORM\Column(length: 10)]
     private ?string $stock = null;
 
     #[ORM\Column(type: Types::DATETIME_MUTABLE)]
