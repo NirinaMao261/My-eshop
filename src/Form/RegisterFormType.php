@@ -30,8 +30,8 @@ class RegisterFormType extends AbstractType
                     new length([
                             'min' => 4,
                             'max' => 255,
-                            'minMessage' => 'Votre email dois comporter {{ value }} au minimum {{ limit }} caractères',
-                            'maxMessage' => 'Votre email dois comporter au maximum {{ limit }} caractères',
+                            'minMessage' => 'Votre email doit comporter {{ value }} au minimum {{ limit }} caractères',
+                            'maxMessage' => 'Votre email doit comporter au maximum {{ limit }} caractères',
                     ]),
                     new Email([
                         'message' => 'l\'email n\'est pas au bon format, ex mail@exemple.com'
@@ -41,10 +41,10 @@ class RegisterFormType extends AbstractType
             ])
             // ->add('roles') rien n'a faire dans un formulaire
             ->add('password', PasswordType::class, [
-                'label' => 'Mots de passe',
+                'label' => 'Mot de passe',
                 'constraints' => [
                     new NotBlank([
-                        'message' => 'Ce champ ne peut être vide'
+                        'message' => 'Ce champ ne peut pas être vide'
                     ]),
                 ],
             ])
@@ -52,7 +52,7 @@ class RegisterFormType extends AbstractType
                 'label' => 'Prénom',
                 'constraints' => [
                     new NotBlank([
-                        'message' => 'Ce champ ne peut être vide'
+                        'message' => 'Ce champ ne peut pas être vide'
                     ]),
                 ],
             ])
@@ -60,7 +60,7 @@ class RegisterFormType extends AbstractType
                 'label' => 'Nom',
                 'constraints' => [
                     new NotBlank([
-                        'message' => 'Ce champ ne peut être vide'
+                        'message' => 'Ce champ ne peut pas être vide'
                     ]),
                 ],
             ])
@@ -68,7 +68,7 @@ class RegisterFormType extends AbstractType
                 'label' => 'Civilité',
                 'constraints' => [
                     new NotBlank([
-                        'message' => 'Ce champ ne peut être vide'
+                        'message' => 'Ce champ ne peut pas être vide'
                     ]),
                 ],
                 'expanded' => true,
