@@ -89,7 +89,7 @@
             "@auto-scripts"
         ],
         "compile": [
-            "symfony console doctrine:schema:update --force --no-interaction"
+            "php bin/console doctrine:schema:update --force --no-interaction"
         ]
     },
     "conflict": {
