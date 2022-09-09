@@ -27,5 +27,15 @@ class DefaultController extends AbstractController
         return $this->render('default/home.html.twig', [
             'produits' => $produits
         ]);
+
+    }
+            #[Route('/profile/voir-mes-infos', name: 'show_profile', methods: ['GET'])]
+            public function showProfile(EntityManagerInterface $entityManager): Response
+        {
+            $commands = $entityManager->getRepository(Command::class)->findBy(['deletedAt' => null]);
+
+            return $this ->render('<default/show_profile.html.twig', [
+                'commands' => $commands
+            ]);
     }
 }

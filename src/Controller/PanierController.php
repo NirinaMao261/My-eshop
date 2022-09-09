@@ -30,7 +30,7 @@ class PanierController extends AbstractController
             'total' => $total
         ]);
     }// end function showPanier()
-
+}
     #[Route('/ajouter-un-produit/{id}', name: 'add_item', methods: ['GET'])]
     public function addItem(Produit $produit, SessionInterface $session): Response
     {
@@ -51,4 +51,39 @@ class PanierController extends AbstractController
         $this->addFlash('success', 'Le produit a bien été ajouté à votre panier :)');
         return $this->redirectToRoute('default_home');
     }
+
+    #[Route('/valider-mon-panier', name: 'validate_commande', methods:['GET'])]
+    public function validateCommande(SessionInterface $session, EntityManagerInterface $entityManager): Response   
+    {
+        $panier = $session->get('panier', []);
+
+        if(empty($panier)) {
+            $this->addFlash('warning','Votre panier est vide');
+            return $this->redirectToRoute('show_panier');
+        }
+
+    #[Route('/retirer-du-panier/{id}', name: 'delete_item', methods: ['GET'])]
+    public function deleteItem(SessionInterface $session, int $id): Response
+    {
+
+        $panier - $session->get('panier', []);
+
+            if (!empty($panier[$id])) {
+                unset($panier[$id]);
+            }
+
+        $session->set('panier', $panier);
+
+        $this->addFlash('success','Article supprimé');
+
+        return $this->redirectToRoute('show_panier');
+    }
+        // $commande = new Commande();
+        // $user =
+
+        // $commande->setCreatedAt(new DateTime());
+        // $commande->setUpdatedAt(new DateTime());
+
+        // $total = 0;
+
 }
